@@ -9,10 +9,14 @@ namespace ChallongeCSharpDriver.Core.Queries {
     using ChallongeCSharpDriver.Core.Results;
 
     public class TournamentQuery : ChallongeQuery<TournamentResult> {
-        public int tournamentID { get; set; }
-
+        public string tournamentID { get; set; }
+        //WTF IS THIS SHIT ? 
         public TournamentQuery(int tournamentID) {
-            this.tournamentID = tournamentID;
+            this.tournamentID = tournamentID.ToString();
+        }
+        public TournamentQuery(string tournamentUrl)
+        {
+            this.tournamentID = tournamentUrl;
         }
 
         private class TournamentQueryResult {
@@ -23,8 +27,9 @@ namespace ChallongeCSharpDriver.Core.Queries {
             return new ChallongeQueryParameters();
         }
 
+        
         private string getAPIPath() {
-            return "tournaments/" + tournamentID;
+                return "tournaments/" + tournamentID;
         }
 
         public async Task<TournamentResult> call(ChallongeAPICaller caller) {

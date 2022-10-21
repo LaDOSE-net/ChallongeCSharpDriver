@@ -11,9 +11,11 @@ namespace ChallongeCSharpDriver.Core.Queries {
     using System.Net.Http;
 
     public class TournamentsQuery : ChallongeQuery<List<TournamentResult>> {
-        public Nullable<TournamentType> type { get; set; }
-        public Nullable<TournamentState> state { get; set; }
+        public TournamentType? type { get; set; }
+        public TournamentState? state { get; set; }
 
+        public DateTime? createdAfter { get; set; }
+        public DateTime? createdBefore { get; set; }
         private class TournamentsQueryResult {
             public TournamentResult tournament { get; set; }
         }
@@ -26,6 +28,18 @@ namespace ChallongeCSharpDriver.Core.Queries {
             if (state.HasValue) {
                 parameters.Add("state", TournamentStateParser.ToString(state.Value));
             }
+
+            if (createdAfter.HasValue)
+            {
+                parameters.Add("created_after", createdAfter.Value.ToString("yyyy-M-dd"));
+            }
+
+            if (createdBefore.HasValue)
+            {
+                parameters.Add("created_before", createdBefore.Value.ToString("yyyy-M-dd"));
+            }
+
+
             return parameters;
         }
 

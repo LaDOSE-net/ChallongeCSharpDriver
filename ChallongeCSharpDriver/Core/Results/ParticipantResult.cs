@@ -8,6 +8,9 @@ namespace ChallongeCSharpDriver.Core.Results {
     public class ParticipantResult {
         public int id { get; set; }
         public string name { get; set; }
-        public string active { get; set; }
+        public bool active { get; set; }
+
+        public int? final_rank { get; set; }
+
     }
 }

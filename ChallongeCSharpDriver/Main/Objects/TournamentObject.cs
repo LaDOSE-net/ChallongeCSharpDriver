@@ -25,7 +25,7 @@ namespace ChallongeCSharpDriver.Main.Objects {
         }
 
         public override string ToString() {
-            return "Tournament #" + result.id + ", \"" + result.name + "\" at https://challonge.com/" + result.url + " (" + result.description + ")";
+            return "Tournament #" + result.id + ", \"" + result.name + "\" at https://challonge.com/" + result.url ;
         }
 
         public async Task AddParticipant(String participant) {

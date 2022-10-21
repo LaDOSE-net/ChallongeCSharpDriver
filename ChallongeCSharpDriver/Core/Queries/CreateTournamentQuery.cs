@@ -12,10 +12,20 @@ namespace ChallongeCSharpDriver.Core.Queries {
         public string name { get; set; }
         public TournamentType type { get; set; }
         public string url { get; set; }
+
+        public DateTime? start_at { get; set; }
         public CreateTournamentQuery(string name, TournamentType type, string url) {
             this.name = name;
             this.type = type;
             this.url = url;
+        }
+
+        public CreateTournamentQuery(string name,DateTime? start_at, TournamentType type, string url)
+        {
+            this.name = name;
+            this.type = type;
+            this.url = url;
+            this.start_at = start_at;
         }
 
         private class TournamentQueryResult {
@@ -27,6 +37,8 @@ namespace ChallongeCSharpDriver.Core.Queries {
             parameters.Add("tournament[name]", name);
             parameters.Add("tournament[tournament_type]", TournamentTypeParser.ToCreateString(type));
             parameters.Add("tournament[url]", url);
+            if(start_at.HasValue)
+                parameters.Add("tournament[start_at]", start_at.Value.ToString("s"));
             return parameters;
         }
 

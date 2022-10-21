@@ -32,5 +32,10 @@ namespace ChallongeCSharpDriver.Main {
             TournamentResult tournamentResult = await new TournamentQuery(tournamentID).call(caller);
             return new TournamentObject(tournamentResult, caller);
         }
+        public async Task<TournamentObject> getTournament(string tournamentUrl)
+        {
+            TournamentResult tournamentResult = await new TournamentQuery(tournamentUrl).call(caller);
+            return new TournamentObject(tournamentResult, caller);
+        }
     }
 }
